@@ -20,12 +20,14 @@ public class SoundChange : MonoBehaviour
 
     public void IncreaseSound()
     {
+        _sound.Stop();
         _sound.DOFade(_maxVolume, _duration);
         _sound.Play();
     }
 
     public void DecreaseSound()
     {
+        _sound.Stop();
         _sound.DOFade(_minVolume, _duration);
         _sound.Play();
     }

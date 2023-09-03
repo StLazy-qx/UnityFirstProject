@@ -10,7 +10,7 @@ public class CameraTargetController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 newCamPosition = new Vector3(offset.x, playerTransform.position.y + offset.y, playerTransform.position.z + offset.z);
+        Vector3 newCamPosition = playerTransform.position + offset;
         transform.position = Vector3.Lerp(transform.position, newCamPosition, camPositionSpeed * Time.deltaTime);
     }
 }
