@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CameraTargetController : MonoBehaviour
 {
-    [SerializeField] private float camPositionSpeed = 5f;
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private Vector3 offset;
+    [SerializeField] private float _camPositionSpeed = 5f;
+    [SerializeField] private Transform _playerTransform;
+    [SerializeField] private Vector3 _offset;
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        Vector3 newCamPosition = playerTransform.position + offset;
-        transform.position = Vector3.Lerp(transform.position, newCamPosition, camPositionSpeed * Time.deltaTime);
+        Vector3 newCamPosition = _playerTransform.position + _offset;
+        transform.position = Vector3.Lerp(transform.position, newCamPosition, _camPositionSpeed * Time.deltaTime);
     }
 }
