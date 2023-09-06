@@ -1,19 +1,18 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Transform _spawnPoints;
-    [SerializeField] private int _timeTemplateSpawn;
+    [SerializeField] private Prefab _template;
+    [SerializeField] private float _timeTemplateSpawn;
     [SerializeField] private int _lifeTime;
-    [SerializeField] private Transform _template;
     [SerializeField] private int _maxAngle;
 
     private Transform[] _points;
     private int _numberPoint;
     private int _angleRotation;
-    private float _currentTime;
 
     private void Start()
     {
@@ -23,20 +22,21 @@ public class Spawner : MonoBehaviour
         {
             _points[i] = _spawnPoints.GetChild(i);
         }
+
+        StartCoroutine(CycleCrateEnemmy());
     }
 
-    private void Update()
+    IEnumerator CycleCrateEnemmy()
     {
-        _numberPoint = Random.Range(0, _spawnPoints.childCount);
-        _angleRotation = Random.Range(0, _maxAngle);
-        _currentTime += Time.deltaTime;
-
-        if (_currentTime >= _timeTemplateSpawn)
+        while (true)
         {
-            Transform newTemplate = Instantiate(_template, 
+            _numberPoint = UnityEngine.Random.Range(0, _spawnPoints.childCount);
+            _angleRotation = UnityEngine.Random.Range(0, _maxAngle);
+            Prefab newTemplate = Instantiate(_template,
                 _points[_numberPoint].position, Quaternion.Euler(0, _angleRotation, 0));
-            _currentTime = 0;
-            Destroy(newTemplate, _lifeTime);
+            Destroy(newTemplate.gameObject, _lifeTime);
+
+            yield return new WaitForSeconds(_timeTemplateSpawn);
         }
     }
 }
