@@ -1,59 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class HealthController : MonoBehaviour
 {
-    [SerializeField] private Slider _healthSlider;
     [SerializeField] private float _maxHealth;
-    [SerializeField] private float _valueDamage;
-    [SerializeField] private float _valueHeal;
+    [SerializeField] private float _damage = 10;
+    [SerializeField] private float _heal = 10;
     [SerializeField] private UnityEvent _onClickButtonDamage;
     [SerializeField] private UnityEvent _onClickButtonHeal;
 
     private float _currentHealth;
-    private float _durationMoveSlider = 2f;
 
     private void Start()
     {
         _currentHealth = _maxHealth;
     }
 
-    private void Update()
-    {
-        _healthSlider.DOValue(_currentHealth, _durationMoveSlider);
-
-        if (_currentHealth <= 0)
-        {
-            _currentHealth = 0;
-        }
-
-        if (_currentHealth >= _maxHealth)
-        {
-            _currentHealth = _maxHealth;
-        }
-    }
+    public float Health => _currentHealth;
 
     public void TakeDamage()
     {
-        if (_currentHealth != 0)
-        {
-            _currentHealth -= _valueDamage;
+        if (_currentHealth <= 0)
+            return;
 
-            _onClickButtonDamage.Invoke();
-        }
+        _currentHealth -= _damage;
+
+        _onClickButtonDamage?.Invoke();
     }
 
     public void TakeHeal()
     {
-        if (_currentHealth != _maxHealth)
-        {
-            _currentHealth += _valueHeal;
+        if (_currentHealth >= _maxHealth)
+            return;
 
-            _onClickButtonHeal.Invoke();
-        }
+        _currentHealth += _heal;
+
+        _onClickButtonHeal?.Invoke();
     }
 }
