@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Transform _spawnPoints;
-    [SerializeField] private Prefab _template;
+    [SerializeField] private TemplateBehavior _template;
     [SerializeField] private float _timeTemplateSpawn;
     [SerializeField] private int _lifeTime;
     [SerializeField] private int _maxAngle;
@@ -26,13 +26,13 @@ public class Spawner : MonoBehaviour
         StartCoroutine(CycleCrateEnemmy());
     }
 
-    IEnumerator CycleCrateEnemmy()
+    private IEnumerator CycleCrateEnemmy()
     {
         while (true)
         {
             _numberPoint = UnityEngine.Random.Range(0, _spawnPoints.childCount);
             _angleRotation = UnityEngine.Random.Range(0, _maxAngle);
-            Prefab newTemplate = Instantiate(_template,
+            TemplateBehavior newTemplate = Instantiate(_template,
                 _points[_numberPoint].position, Quaternion.Euler(0, _angleRotation, 0));
             Destroy(newTemplate.gameObject, _lifeTime);
 
