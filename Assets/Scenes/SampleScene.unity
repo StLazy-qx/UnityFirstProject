@@ -272,7 +272,6 @@ GameObject:
   - component: {fileID: 130514425}
   - component: {fileID: 130514424}
   - component: {fileID: 130514423}
-  - component: {fileID: 130514426}
   m_Layer: 5
   m_Name: HealingButton
   m_TagString: Untagged
@@ -395,24 +394,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130514421}
   m_CullTransparentMesh: 1
---- !u!114 &130514426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130514421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b927c248ced6645b103af3a67e1e80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 1955912796}
-  _healthController: {fileID: 1359074230}
-  _healthSlider: {fileID: 914307036}
-  _durationAnimation: 0.5
-  _valueChangeSize: 1.1
-  _eventColor: {r: 0.04705883, g: 0.7607844, b: 0.04705883, a: 0}
 --- !u!1 &151917696
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,6 +2598,7 @@ GameObject:
   - component: {fileID: 1359074229}
   - component: {fileID: 1359074228}
   - component: {fileID: 1359074230}
+  - component: {fileID: 1359074233}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2714,7 +2696,7 @@ MonoBehaviour:
   _onClickButtonDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2037494763}
+      - m_Target: {fileID: 1955912799}
         m_TargetAssemblyTypeName: FormChanger, Assembly-CSharp
         m_MethodName: ChangeForm
         m_Mode: 1
@@ -2729,7 +2711,7 @@ MonoBehaviour:
   _onClickButtonHeal:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 130514426}
+      - m_Target: {fileID: 1955912800}
         m_TargetAssemblyTypeName: FormChanger, Assembly-CSharp
         m_MethodName: ChangeForm
         m_Mode: 1
@@ -2741,6 +2723,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1359074233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359074225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9596c4b0a7618ce49ad500afcbdb9cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthSlider: {fileID: 914307036}
+  _durationAnimation: 0.4
 --- !u!1 &1369156286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3776,6 +3772,8 @@ GameObject:
   - component: {fileID: 1955912794}
   - component: {fileID: 1955912793}
   - component: {fileID: 1955912798}
+  - component: {fileID: 1955912800}
+  - component: {fileID: 1955912799}
   m_Layer: 0
   m_Name: PlayerModel
   m_TagString: Player
@@ -3878,6 +3876,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1955912799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955912792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b927c248ced6645b103af3a67e1e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _durationAnimation: 0.4
+  _valueChangeSize: 0.9
+  _eventColor: {r: 0.754717, g: 0.09611962, b: 0.15718165, a: 0}
+--- !u!114 &1955912800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955912792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b927c248ced6645b103af3a67e1e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _durationAnimation: 0.4
+  _valueChangeSize: 1.1
+  _eventColor: {r: 0.04705883, g: 0.7607844, b: 0.04705883, a: 0}
 --- !u!1 &1957975118
 GameObject:
   m_ObjectHideFlags: 0
@@ -4034,7 +4062,6 @@ GameObject:
   - component: {fileID: 2037494762}
   - component: {fileID: 2037494761}
   - component: {fileID: 2037494760}
-  - component: {fileID: 2037494763}
   m_Layer: 5
   m_Name: DamageButton
   m_TagString: Untagged
@@ -4157,21 +4184,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037494758}
   m_CullTransparentMesh: 1
---- !u!114 &2037494763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037494758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b927c248ced6645b103af3a67e1e80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 1955912796}
-  _healthController: {fileID: 1359074230}
-  _healthSlider: {fileID: 914307036}
-  _durationAnimation: 0.5
-  _valueChangeSize: 0.8
-  _eventColor: {r: 0.754717, g: 0.09611962, b: 0.15718165, a: 0}
