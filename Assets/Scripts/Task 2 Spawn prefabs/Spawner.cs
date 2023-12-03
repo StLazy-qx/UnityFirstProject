@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 public class Spawner : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Enemy[] _templates;
 
     private float _timeTemplateSpawn = 7.0f;
-    private int _lifeTime = 6;
+    private int _lifeTime = 9;
     private Transform[] _points;
     private Transform[] _targets;
 
@@ -35,7 +34,7 @@ public class Spawner : MonoBehaviour
             for (int i = 0; i < _points.Length; i++)
             {
                 var newTemplate = Instantiate(_templates[i], _points[i].position, Quaternion.identity);
-                newTemplate.SetTargetPosition(_targets[i].position);
+                newTemplate.SetTargetPosition(_targets[i]);
 
                 Destroy(newTemplate.gameObject, _lifeTime);
             }

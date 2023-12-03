@@ -1,19 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour 
 {
-    private float _speedMove = 5.0f;
-    private Vector3 _targetPosition;
+    private float _speedMove = 7.0f;
+    private Transform _target;
+    private Vector3 _targetLastPosition;
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speedMove * Time.deltaTime);
+        if (_target != null)
+        {
+            Vector3 targetPosition = _target.position;
+
+            if (_targetLastPosition != targetPosition)
+            {
+                Vector3 newPosition = Vector3.MoveTowards(transform.position, targetPosition, _speedMove * Time.deltaTime);
+                transform.position = newPosition;
+                _targetLastPosition = targetPosition;
+            }
+        }
     }
 
-    public void SetTargetPosition(Vector3 targetPosition)
+    public void SetTargetPosition(Transform target)
     {
-        _targetPosition = targetPosition;
+        _target = target;
     }
 }
