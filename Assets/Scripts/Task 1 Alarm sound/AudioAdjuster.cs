@@ -5,7 +5,7 @@ using DG.Tweening;
 
 [RequireComponent(typeof(AudioSource))]
 
-public class SoundController : MonoBehaviour
+public class AudioAdjuster : MonoBehaviour
 {
     [SerializeField] private AudioSource _sound;
     [SerializeField] private float _maxVolume;

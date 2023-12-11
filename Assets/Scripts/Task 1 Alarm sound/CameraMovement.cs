@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraTargetController : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float _camPositionSpeed;
     [SerializeField] private Transform _target;
