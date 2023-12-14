@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 [RequireComponent(typeof(AudioSource))]
 
@@ -20,15 +19,39 @@ public class AudioAdjuster : MonoBehaviour
 
     public void IncreaseSound()
     {
-        _sound.Stop();
-        _sound.DOFade(_maxVolume, _duration);
-        _sound.Play();
+        StartCoroutine(FadeSound(_maxVolume));
     }
 
     public void DecreaseSound()
     {
+        StartCoroutine(FadeSound(_minVolume));
+    }
+
+    private IEnumerator FadeSound(float targetVolume)
+    {
         _sound.Stop();
-        _sound.DOFade(_minVolume, _duration);
-        _sound.Play();
+
+        float startVolume = _sound.volume;
+        float timer = 0;
+
+        while (timer < _duration)
+        {
+            _sound.volume = Mathf.Lerp(startVolume, targetVolume, timer / _duration);
+            timer += Time.deltaTime;
+
+            if (_sound.isPlaying == false)
+            {
+                _sound.Play();
+            }
+
+            yield return null;
+        }
+
+        _sound.volume = targetVolume;
+
+        if (targetVolume == _minVolume)
+        {
+            _sound.Stop();
+        }
     }
 }
